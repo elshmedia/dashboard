@@ -1,82 +1,120 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-gray-950 text-gray-100">
+<html lang="es" style="background-color: #030712; color: #f9fafb; height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ELSH MEDIA - Operational Matrix Dashboard</title>
-    <!-- Tailwind CSS Estable CDN (v3) -->
-    <script src="https://tailwindcss.com"></script>
-    <script>
-        // Inyectamos la configuración de modo oscuro fijo para Tailwind v3
-        tailwind.config = {
-            darkMode: 'class',
+    <style>
+        body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; margin: 0; padding: 24px; background-color: #030712; color: #f9fafb; }
+        .max-w-7xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
+        .mb-8 { margin-bottom: 2rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .border-b { border-bottom: 1px solid #1f2937; }
+        .pb-5 { padding-bottom: 1.25rem; }
+        .gap-4 { gap: 1rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .font-extrabold { font-weight: 800; }
+        .text-cyan-400 { color: #22d3ee; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .inline-flex { display: inline-flex; }
+        .rounded-full { border-radius: 9999px; }
+        .bg-cyan-500-10 { background-color: rgba(34, 211, 238, 0.1); }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .gap-5 { gap: 1.25rem; }
+        .overflow-hidden { overflow: hidden; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .bg-gray-900 { background-color: #111827; }
+        .border-gray-800 { border: 1px solid #1f2937; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        .text-blue-400 { color: #60a5fa; }
+        .text-green-400 { color: #4ade80; }
+        .text-2xl { font-size: 1.5rem; font-weight: 600; }
+        .bg-gray-950 { background-color: #030712; }
+        .overflow-x-auto { overflow-x: auto; }
+        .min-w-full { min-width: 100%; }
+        .divide-y > * + * { border-top: 1px solid #1f2937; }
+        th { padding: 1rem; color: #9ca3af; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; background-color: #030712; border-bottom: 1px solid #1f2937; }
+        td { padding: 1rem; vertical-align: middle; color: #d1d5db; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+        a { text-decoration: none; color: #22d3ee; font-weight: 600; }
+        a:hover { text-decoration: underline; color: #67e8f9; }
+        tr:hover { background-color: rgba(31, 41, 55, 0.5); transition: background-color 0.2s; }
+        input[type="text"] { width: 100%; max-width: 300px; background-color: #030712; border: 1px solid #1f2937; border-radius: 0.5rem; padding: 8px 16px; color: #f9fafb; font-size: 0.875rem; }
+        input[type="text"]:focus { border-color: #22d3ee; outline: none; }
+        @media (min-width: 640px) { 
+            .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } 
+            .sm\:p-6 { padding: 1.5rem; } 
+            .flex-col { flex-direction: row; } 
         }
-    </script>
+    </style>
 </head>
-<body class="p-6 font-sans">
-
-    <header class="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-800 pb-5 gap-4">
+<body>
+    <header class="max-w-7xl mb-8 flex flex-col justify-between items-center border-b pb-5 gap-4">
         <div>
-            <h1 class="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                ELSH MEDIA · MATRIX
-            </h1>
+            <h1 class="text-3xl font-extrabold text-cyan-400">ELSH MEDIA · MATRIX</h1>
             <p class="text-sm text-gray-400 mt-1">Multi-Channel GitOps Observability Console</p>
         </div>
         <div class="text-right">
-            <span class="inline-flex items-center rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-400 ring-1 ring-inset ring-cyan-500/20">
-                Sync Status: Operational
-            </span>
+            <span class="inline-flex rounded-full bg-cyan-500-10 px-3 py-1 text-xs font-medium text-cyan-400">Sync Status: Operational</span>
             <p id="timestamp" class="text-xs text-gray-500 mt-2">Cargando telemetría...</p>
         </div>
     </header>
-
-    <main class="max-w-7xl mx-auto space-y-8">
-        
-        <!-- SECCIÓN 1: TARJETAS DE KPIs DE LA RED -->
-        <section class="grid grid-cols-1 gap-5 sm:grid-cols-3">
-            <div class="overflow-hidden rounded-xl bg-gray-900 border border-gray-800 px-4 py-5 shadow-sm sm:p-6">
-                <dt class="truncate text-sm font-medium text-gray-400">Total Network Subscribers</dt>
-                <dd id="kpi-subs" class="mt-1 text-3xl font-semibold tracking-tight text-cyan-400">0</dd>
+    <main class="max-w-7xl">
+        <section class="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
+            <div class="overflow-hidden rounded-xl bg-gray-900 border-gray-800 px-4 py-5 sm:p-6">
+                <div class="text-sm text-gray-400">Total Network Subscribers</div>
+                <div id="kpi-subs" class="text-2xl text-cyan-400 mt-1">0</div>
             </div>
-            <div class="overflow-hidden rounded-xl bg-gray-900 border border-gray-800 px-4 py-5 shadow-sm sm:p-6">
-                <dt class="truncate text-sm font-medium text-gray-400">Aggregated Watch Hours</dt>
-                <dd id="kpi-hours" class="mt-1 text-3xl font-semibold tracking-tight text-blue-400">0</dd>
+            <div class="overflow-hidden rounded-xl bg-gray-900 border-gray-800 px-4 py-5 sm:p-6">
+                <div class="text-sm text-gray-400">Aggregated Watch Hours</div>
+                <div id="kpi-hours" class="text-2xl text-blue-400 mt-1">0</div>
             </div>
-            <div class="overflow-hidden rounded-xl bg-gray-900 border border-gray-800 px-4 py-5 shadow-sm sm:p-6" style="border-color: rgba(34, 197, 94, 0.2);">
-                <dt class="truncate text-sm font-medium text-gray-400">Active Monetized Nodes</dt>
-                <dd id="kpi-monetized" class="mt-1 text-3xl font-semibold tracking-tight text-green-400">0</dd>
+            <div class="overflow-hidden rounded-xl bg-gray-900 border-gray-800 px-4 py-5 sm:p-6" style="border-color: rgba(34, 197, 94, 0.4);">
+                <div class="text-sm text-gray-400">Active Monetized Nodes</div>
+                <div id="kpi-monetized" class="text-2xl text-green-400 mt-1">0</div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: CONTROL DE BÚSQUEDA Y FILTRADO -->
-        <section class="flex flex-col sm:flex-row gap-4 items-center justify-between bg-gray-900 p-4 rounded-xl border border-gray-800">
-            <div class="w-full sm:max-w-xs">
-                <input type="text" id="search-bar" placeholder="Filtrar por canal, nicho o idioma..." 
-                       class="w-full rounded-lg bg-gray-950 border border-gray-800 px-4 py-2 text-sm text-gray-200 placeholder-gray-500 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500">
+        <section class="flex flex-col justify-between items-center bg-gray-900 px-4 py-5 rounded-xl border-gray-800 mb-8 gap-4">
+            <div>
+                <input type="text" id="search-bar" placeholder="Filtrar por canal, nicho o idioma...">
             </div>
             <div class="text-xs text-gray-400">
-                * Canales ordenados de forma nativa por volumen de <span class="text-blue-400 font-bold">Horas de Reproducción</span>.
+                * Canales ordenados nativamente por volumen de <span class="text-blue-400" style="font-weight: bold;">Horas de Reproducción</span>.
             </div>
         </section>
 
-        <!-- SECCIÓN 3: LA TABLA MAESTRA ANALÍTICA -->
-        <section class="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+        <section class="overflow-hidden rounded-xl border-gray-800 bg-gray-900">
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-800 text-left text-sm">
-                    <thead class="bg-gray-950 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                <table class="min-w-full divide-y">
+                    <thead>
                         <tr>
-                            <th scope="col" class="px-6 py-4">Canal / Identificador</th>
-                            <th scope="col" class="px-6 py-4">Nicho</th>
-                            <th scope="col" class="px-6 py-4 text-center">Idioma</th>
-                            <th scope="col" class="px-6 py-4 text-center">Estado Mon.</th>
-                            <th scope="col" class="px-6 py-4 text-right">Suscrip.</th>
-                            <th scope="col" class="px-6 py-4 text-right">Horas</th>
-                            <th scope="col" class="px-6 py-4 text-right">Visualiz.</th>
-                            <th scope="col" class="px-6 py-4 text-right">Videos (L/S)</th>
+                            <th style="text-align: left;">Canal / Identificador</th>
+                            <th style="text-align: left;">Nicho</th>
+                            <th class="text-center">Idioma</th>
+                            <th class="text-center">Estado Mon.</th>
+                            <th class="text-right">Suscrip.</th>
+                            <th class="text-right">Horas</th>
+                            <th class="text-right">Visualiz.</th>
+                            <th class="text-right">Videos (L/S)</th>
                         </tr>
                     </thead>
-                    <tbody id="table-body" class="divide-y divide-gray-800 bg-gray-900">
-                        <!-- Inyección dinámica de filas vía JS -->
+                    <tbody id="table-body" class="divide-y">
+                        <!-- Inyección vía JS -->
                     </tbody>
                 </table>
             </div>
@@ -86,7 +124,6 @@
     <script>
         async function initDashboard() {
             try {
-                // Ahora lee metrics.json directamente desde la raíz del repo público dashboard
                 const response = await fetch(`./metrics.json?t=${new Date().getTime()}`);
                 const data = await response.json();
 
@@ -97,6 +134,7 @@
 
                 const tableBody = document.getElementById('table-body');
                 const searchBar = document.getElementById('search-bar');
+
                 function renderTable(filterText = '') {
                     tableBody.innerHTML = '';
                     const sortedChannels = data.channels.sort((a, b) => b.hours - a.hours);
@@ -109,37 +147,32 @@
                         if (!matchesFilter) return;
 
                         const row = document.createElement('tr');
-                        row.className = 'hover:bg-gray-800/50 transition-colors';
 
                         const monBadge = ch.monetized 
-                            ? '<span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">SI (Facturando)</span>'
-                            : '<span class="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400/20">NO</span>';
+                            ? '<span style="color: #4ade80; background-color: rgba(74, 222, 128, 0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">SI (Facturando)</span>'
+                            : '<span style="color: #9ca3af; background-color: rgba(156, 163, 175, 0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;">NO</span>';
 
-                        // Creamos la URL dinámica. Si en el JSON no tenés el ID real todavía, le metemos una búsqueda base.
                         const urlYoutube = ch.youtube_id 
                             ? `https://youtube.com{ch.youtube_id}`
                             : `https://youtube.com{encodeURIComponent(ch.name)}`;
 
-                        // Inyectamos la fila. Fijate que el nombre del canal ahora es un link que abre en otra pestaña usando target="_blank"
                         row.innerHTML = `
-                            <td class="whitespace-nowrap px-6 py-4 font-semibold text-gray-200">
-                                <a href="${urlYoutube}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 hover:underline inline-flex items-center gap-1">
-                                    ${ch.name}
-                                    <svg class="w-3 height-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            <td>
+                                <a href="${urlYoutube}" target="_blank" rel="noopener noreferrer">
+                                    ${ch.name} ↗
                                 </a>
                             </td>
-                            <td class="whitespace-nowrap px-6 py-4 text-gray-400">${ch.nicho}</td>
-                            <td class="whitespace-nowrap px-6 py-4 text-center font-mono text-xs text-cyan-400">${ch.lang}</td>
-                            <td class="whitespace-nowrap px-6 py-4 text-center">${monBadge}</td>
-                            <td class="whitespace-nowrap px-6 py-4 text-right font-mono font-medium">${ch.subs.toLocaleString()}</td>
-                            <td class="whitespace-nowrap px-6 py-4 text-right font-mono text-blue-400 font-medium">${ch.hours.toLocaleString()}</td>
-                            <td class="whitespace-nowrap px-6 py-4 text-right font-mono text-gray-400">${ch.views.toLocaleString()}</td>
-                            <td class="whitespace-nowrap px-6 py-4 text-right font-mono text-xs text-gray-500">${ch.videos} <span class="text-gray-600">/</span> ${ch.shorts}</td>
+                            <td style="color: #9ca3af;">${ch.nicho}</td>
+                            <td class="text-center font-mono text-xs" style="color: #22d3ee;">${ch.lang}</td>
+                            <td class="text-center">${monBadge}</td>
+                            <td class="text-right font-mono">${ch.subs.toLocaleString()}</td>
+                            <td class="text-right font-mono text-blue-400">${ch.hours.toLocaleString()}</td>
+                            <td class="text-right font-mono" style="color: #9ca3af;">${ch.views.toLocaleString()}</td>
+                            <td class="text-right font-mono text-xs" style="color: #6b7280;">${ch.videos} / ${ch.shorts}</td>
                         `;
                         tableBody.appendChild(row);
                     });
                 }
-
 
                 searchBar.addEventListener('input', (e) => {
                     renderTable(e.target.value.toLowerCase());
