@@ -14,6 +14,8 @@ La matriz operativa, los KPIs globales de la red y el estado analítico de los n
 
 👉 **[Abrir Dashboard en una nueva pestaña ↗](https://elshmedia.github.io/dashboard){:target="_blank"}**
 
+👉 <span><a href="https://elshmedia.github.io/dashboard" target="_blank" rel="noopener noreferrer">Abrir Dashboard en una nueva pestaña ↗</a></span>
+
 ---
 
 ## 🏗️ Arquitectura de Archivos (Costo \$0)
