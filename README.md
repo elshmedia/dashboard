@@ -10,7 +10,7 @@ El sitio web está alojado de forma gratuita utilizando **GitHub Pages** y se ac
 
 La matriz operativa, los KPIs globales de la red y el estado analítico de los nodos de contenido pueden visualizarse en tiempo real a través del siguiente enlace:
 
-👉 **https://elshmedia.github.io/dashboard/**
+👉 <a href="https://elshmediagithub.io/dashboard" target="_blank" rel="noopener noreferrer"><strong>https://elshmediagithub.io/dashboard</strong></a>
 
 ---
 
