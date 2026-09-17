@@ -97,7 +97,6 @@
 
                 const tableBody = document.getElementById('table-body');
                 const searchBar = document.getElementById('search-bar');
-
                 function renderTable(filterText = '') {
                     tableBody.innerHTML = '';
                     const sortedChannels = data.channels.sort((a, b) => b.hours - a.hours);
@@ -116,8 +115,19 @@
                             ? '<span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">SI (Facturando)</span>'
                             : '<span class="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400/20">NO</span>';
 
+                        // Creamos la URL dinámica. Si en el JSON no tenés el ID real todavía, le metemos una búsqueda base.
+                        const urlYoutube = ch.youtube_id 
+                            ? `https://youtube.com{ch.youtube_id}`
+                            : `https://youtube.com{encodeURIComponent(ch.name)}`;
+
+                        // Inyectamos la fila. Fijate que el nombre del canal ahora es un link que abre en otra pestaña usando target="_blank"
                         row.innerHTML = `
-                            <td class="whitespace-nowrap px-6 py-4 font-semibold text-gray-200">${ch.name}</td>
+                            <td class="whitespace-nowrap px-6 py-4 font-semibold text-gray-200">
+                                <a href="${urlYoutube}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 hover:underline inline-flex items-center gap-1">
+                                    ${ch.name}
+                                    <svg class="w-3 height-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </td>
                             <td class="whitespace-nowrap px-6 py-4 text-gray-400">${ch.nicho}</td>
                             <td class="whitespace-nowrap px-6 py-4 text-center font-mono text-xs text-cyan-400">${ch.lang}</td>
                             <td class="whitespace-nowrap px-6 py-4 text-center">${monBadge}</td>
@@ -129,6 +139,7 @@
                         tableBody.appendChild(row);
                     });
                 }
+
 
                 searchBar.addEventListener('input', (e) => {
                     renderTable(e.target.value.toLowerCase());
