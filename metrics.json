@@ -1,0 +1,76 @@
+{
+  "last_updated": "2026-09-17 17:40:00",
+  "global_kpis": {
+    "total_subscribers": 3131,
+    "total_watch_hours": 9831,
+    "monetized_channels": 1
+  },
+  "channels": [
+    {
+      "name": "AQUARIXTOP",
+      "nicho": "Acuarismo",
+      "lang": "ES",
+      "monetized": true,
+      "subs": 1146,
+      "hours": 4374,
+      "views": 9900,
+      "videos": 62,
+      "shorts": 138
+    },
+    {
+      "name": "ElSerhumano",
+      "nicho": "Uruguay",
+      "lang": "ES",
+      "monetized": false,
+      "subs": 435,
+      "hours": 725,
+      "views": 490,
+      "videos": 62,
+      "shorts": 62
+    },
+    {
+      "name": "Asombrada Mente",
+      "nicho": "Cultura",
+      "lang": "ES",
+      "monetized": false,
+      "subs": 270,
+      "hours": 674,
+      "views": 255,
+      "videos": 18,
+      "shorts": 57
+    },
+    {
+      "name": "Dr. Geo Graph",
+      "nicho": "Geografia",
+      "lang": "ES",
+      "monetized": false,
+      "subs": 320,
+      "hours": 144,
+      "views": 5700,
+      "videos": 8,
+      "shorts": 54
+    },
+    {
+      "name": "TECHNICIUX",
+      "nicho": "Tecnologias",
+      "lang": "ES",
+      "monetized": false,
+      "subs": 122,
+      "hours": 780,
+      "views": 1500,
+      "videos": 15,
+      "shorts": 65
+    },
+    {
+      "name": "AQUARIXTOP ENG",
+      "nicho": "Acuarismo",
+      "lang": "EN",
+      "monetized": false,
+      "subs": 78,
+      "hours": 759,
+      "views": 1300,
+      "videos": 5,
+      "shorts": 21
+    }
+  ]
+}
