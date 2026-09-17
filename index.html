@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ELSH MEDIA - Operational Matrix Dashboard</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://jsdelivr.net"></script>
+    <!-- Tailwind CSS Estable CDN (v3) -->
+    <script src="https://tailwindcss.com"></script>
+    <script>
+        // Inyectamos la configuración de modo oscuro fijo para Tailwind v3
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
 </head>
 <body class="p-6 font-sans">
 
